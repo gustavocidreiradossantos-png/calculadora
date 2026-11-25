@@ -1,4 +1,5 @@
-const MINUTOS_ATE_CORTE = (24 + 6) * 60;
+const MINUTOS_POR_DIA = 24 * 60;
+const CORTE_EM_MINUTOS = 6 * 60;
 
 export function calcularDuracao(horario) {
   const partes = /^(\d{1,2})(?:h|:(\d{2}))?$/i.exec(horario)
@@ -9,7 +10,8 @@ export function calcularDuracao(horario) {
   const minutos = Number(partes[2] ?? 0);
   if (horas > 23 || minutos > 59) return null;
 
-  const total = MINUTOS_ATE_CORTE - (horas * 60 + minutos);
+  const inicio = horas * 60 + minutos;
+  const total = (CORTE_EM_MINUTOS - inicio + MINUTOS_POR_DIA) % MINUTOS_POR_DIA;
   return { horas: Math.floor(total / 60), minutos: total % 60 };
 }
 

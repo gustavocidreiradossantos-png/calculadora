@@ -4,7 +4,7 @@ Aplicação web em português brasileiro para calcular a diferença entre as dat
 
 Para preencher o DIH pelo teclado, digite oito números por data, como `26092026`. O resultado aparece assim que as duas datas são válidas. Ao sair do campo, a data é exibida com barras. Também é possível digitar com barras ou usar o calendário.
 
-A seção **Tempo de permanência em horas** recebe somente o horário da internação. Digite, por exemplo, `14`, `14h`, `14:30` ou `1430`. A duração é calculada até as 06h do dia seguinte. Uma internação às 14h resulta em 16 horas. Cada formulário tem seu próprio botão de limpeza.
+A seção **Tempo de permanência em horas** recebe somente o horário da internação. Digite, por exemplo, `14`, `14h`, `14:30` ou `1430`. Até as 06h, o corte é às 06h da mesma manhã. Após as 06h, o corte é na manhã seguinte. Uma internação às 03h42 resulta em 2 horas e 18 minutos, e às 14h resulta em 16 horas. Cada formulário tem seu próprio botão de limpeza.
 
 ## Executar localmente
 

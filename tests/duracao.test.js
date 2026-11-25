@@ -8,11 +8,14 @@ for (const [horario, texto] of [
   ['14:30', '15 horas e 30 minutos'],
   ['1430', '15 horas e 30 minutos'],
   ['23:59', '6 horas e 1 minuto'],
-  ['00:00', '30 horas'],
-  ['6', '24 horas'],
-  ['05:30', '24 horas e 30 minutos'],
+  ['00:00', '6 horas'],
+  ['03:42', '2 horas e 18 minutos'],
+  ['0342', '2 horas e 18 minutos'],
+  ['05:59', '1 minuto'],
+  ['6', '0 horas'],
+  ['06:01', '23 horas e 59 minutos'],
 ]) {
-  test(`De ${horario} até as 06h do dia seguinte são ${texto}`, () => {
+  test(`De ${horario} até o corte das 06h são ${texto}`, () => {
     assert.equal(formatarDuracao(calcularDuracao(horario)), texto);
   });
 }
