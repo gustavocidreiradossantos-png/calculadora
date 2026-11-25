@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Calcule os dias de internação hospitalar e consulte o percentual aplicável.">
+  <title>Calculadora de DIH</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./css/style.css">
+  <script type="module" src="./js/app.js"></script>
+</head>
+<body>
+  <main class="card">
+    <header>
+      <img src="./assets/favicon.svg" width="52" height="52" alt="">
+      <div>
+        <h1>Calculadora de DIH</h1>
+        <p>Controle de permanência hospitalar</p>
+      </div>
+    </header>
+
+    <form id="formulario" autocomplete="off" novalidate>
+      <div class="datas">
+        <div>
+          <label for="internacao">Data de internação</label>
+          <div class="campo">
+            <input id="internacao" type="text" inputmode="numeric" placeholder="Ex. 26092026" aria-describedby="formato erro-internacao" spellcheck="false">
+            <button type="button" class="calendario" data-campo="internacao" aria-label="Abrir calendário de internação" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4m10-4v4M3 10h18"/></svg></button>
+          </div>
+          <p class="erro" id="erro-internacao" role="status"></p>
+        </div>
+        <div>
+          <label for="alta">Data de alta hospitalar</label>
+          <div class="campo">
+            <input id="alta" type="text" inputmode="numeric" placeholder="Ex. 23102026" aria-describedby="formato erro-alta" spellcheck="false">
+            <button type="button" class="calendario" data-campo="alta" aria-label="Abrir calendário de alta" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4m10-4v4M3 10h18"/></svg></button>
+          </div>
+          <p class="erro" id="erro-alta" role="status"></p>
+        </div>
+      </div>
+      <p id="formato" class="dica">Digite dia, mês e ano com 8 números. Exemplo: 26092026.</p>
+      <label class="opcao"><input id="inclusiva" type="checkbox"> Incluir dia da alta</label>
+
+      <dl class="resultado">
+        <div><dt>Total de internação</dt><dd id="dias">—</dd></div>
+        <div><dt>Percentual aplicável</dt><dd id="percentual">—</dd></div>
+      </dl>
+      <p id="anuncio" class="sr-only" role="status" aria-atomic="true"></p>
+      <div class="acoes">
+        <button id="copiar" type="button" disabled>Copiar resultado</button>
+        <button id="limpar" type="button">Limpar campos</button>
+        <span id="copia" role="status"></span>
+      </div>
+    </form>
+
+    <section aria-labelledby="faixas-titulo">
+      <h2 id="faixas-titulo">Faixas de classificação</h2>
+      <div class="tabela">
+        <table aria-labelledby="faixas-titulo">
+          <thead><tr><th scope="col">Dias de internação</th><th scope="col">Percentual</th></tr></thead>
+          <tbody id="faixas"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="horas-titulo">
+      <h2 id="horas-titulo">Tempo de permanência em horas</h2>
+      <form id="formulario-horas" autocomplete="off" novalidate>
+        <div class="periodo-horas">
+          <label for="hora-inicio">Horário da internação</label>
+          <div class="campo">
+            <input id="hora-inicio" type="text" inputmode="numeric" placeholder="Ex. 14 ou 1430" aria-describedby="erro-hora-inicio" spellcheck="false">
+          </div>
+          <p class="erro" id="erro-hora-inicio" role="status"></p>
+        </div>
+        <div class="duracao" role="status" aria-atomic="true">Tempo até as 06h do dia seguinte <strong id="duracao">—</strong></div>
+        <div class="acoes"><button id="limpar-horas" type="button">Limpar horário</button></div>
+      </form>
+    </section>
+  </main>
+
+  <dialog id="seletor" aria-labelledby="seletor-titulo">
+    <div class="cabecalho-calendario">
+      <h2 id="seletor-titulo"></h2>
+      <button id="fechar" class="botao-icone" type="button" aria-label="Fechar calendário">×</button>
+    </div>
+    <div class="mes">
+      <button id="anterior" class="botao-icone" type="button" aria-label="Mês anterior">‹</button>
+      <select id="mes" aria-label="Mês"></select>
+      <input id="ano" type="number" min="1" max="9999" step="1" aria-label="Ano">
+      <button id="proximo" class="botao-icone" type="button" aria-label="Próximo mês">›</button>
+    </div>
+    <div class="semana" aria-hidden="true"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div>
+    <div class="semana" id="dias-calendario" role="group" aria-label="Dias do mês"></div>
+  </dialog>
+</body>
+</html>

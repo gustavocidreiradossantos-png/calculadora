@@ -1,0 +1,102 @@
+:root {
+  color-scheme: light;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  color: #142925;
+  background: #eff4f2;
+  accent-color: #11634f;
+  line-height: 1.45;
+  --verde: #11634f;
+  --suave: #526761;
+  --borda: #cad8d3;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; padding: clamp(16px, 5vw, 64px) 16px; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: default; }
+:focus-visible { outline: 3px solid #237dff; outline-offset: 3px; }
+
+.card {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: clamp(20px, 5vw, 44px);
+  border: 1px solid #dce7e3;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 20px 55px #15392c13;
+}
+
+header { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; }
+h1, h2, p, dl, dd { margin: 0; }
+h1 { font-size: clamp(1.45rem, 4.8vw, 2.1rem); letter-spacing: -.035em; line-height: 1.1; }
+h2 { font-size: 1.125rem; }
+header p { color: var(--suave); margin-top: 6px; font-size: .925rem; }
+.datas, .resultado { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.datas { gap: 16px; }
+.datas label, .periodo-horas label { display: block; font-size: .9rem; font-weight: 650; margin-bottom: 7px; }
+.campo { display: flex; border: 1px solid var(--borda); border-radius: 10px; padding: 3px; }
+.campo:has([aria-invalid="true"]) { border-color: #a52c35; }
+.campo input { width: 100%; min-width: 0; padding: 8px 10px; border: 0; border-radius: 6px; color: inherit; background: transparent; }
+.campo input::placeholder { color: #657872; }
+.calendario, .botao-icone {
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  background: #eff6f3;
+  color: var(--verde);
+  border: 0;
+  border-radius: 7px;
+}
+.calendario svg { width: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; }
+.erro { color: #a52c35; font-size: .85rem; }
+.erro:not(:empty) { margin-top: 7px; }
+.dica { margin-top: 8px; color: var(--suave); font-size: .85rem; }
+.opcao { display: flex; align-items: center; gap: 9px; width: fit-content; min-height: 44px; margin: 10px 0 12px; cursor: pointer; }
+.opcao input { width: 18px; height: 18px; margin: 0; }
+
+.resultado { background: #eef7f3; border: 1px solid #d9e9e2; border-radius: 14px; }
+.resultado > div { padding: clamp(14px, 3vw, 23px); }
+.resultado > div + div { border-left: 1px solid #d0e2da; }
+dt { color: var(--suave); font-size: .875rem; font-weight: 650; }
+dd { font-weight: 750; font-size: clamp(1.4rem, 5vw, 2.15rem); letter-spacing: -.035em; overflow-wrap: anywhere; }
+#percentual { color: var(--verde); }
+.acoes { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+.acoes button { border: 1px solid var(--borda); border-radius: 9px; padding: 10px 14px; min-height: 44px; background: #fff; color: inherit; font-weight: 650; }
+#copiar { background: var(--verde); color: #fff; border-color: var(--verde); }
+#copiar:disabled { background: #e8efec; color: #526761; border-color: #e8efec; }
+#copia { color: var(--verde); font-size: .875rem; }
+section { margin-top: 28px; padding-top: 22px; border-top: 1px solid #dce7e3; }
+.periodo-horas { margin-top: 14px; }
+.periodo-horas .campo { max-width: 18rem; min-height: 52px; }
+.duracao { margin-top: 16px; padding: 14px 20px; border: 1px solid #d9e9e2; border-radius: 14px; background: #eef7f3; color: var(--suave); font-size: .875rem; font-weight: 650; }
+.duracao strong { display: block; color: #142925; font-size: clamp(1.4rem, 5vw, 2.15rem); }
+.tabela { margin-top: 12px; border: 1px solid #dce7e3; border-radius: 12px; overflow: hidden; }
+table { width: 100%; border-collapse: collapse; text-align: left; font-size: .9rem; }
+th, td { padding: 10px clamp(9px, 2.6vw, 16px); }
+th { background: #f3f7f5; color: #38534b; }
+td { border-top: 1px solid #dce7e3; }
+th:last-child, td:last-child { text-align: right; }
+.ativa { background: #e5f5ee; color: #104f3f; font-weight: 700; }
+.aplicada { margin-inline-start: 8px; border: 1px solid #a0cab9; border-radius: 5px; padding: 1px 5px; font-size: .72rem; white-space: nowrap; }
+
+dialog { width: min(390px, calc(100% - 24px)); padding: clamp(12px, 4vw, 20px); border: 1px solid var(--borda); border-radius: 18px; color: inherit; background: #fff; }
+dialog::backdrop { background: #132e2770; }
+.cabecalho-calendario { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.botao-icone { font-size: 1.45rem; }
+.botao-icone:disabled { opacity: .5; }
+.mes { display: grid; grid-template-columns: auto minmax(0, 1fr) minmax(55px, 75px) auto; gap: 6px; margin: 12px 0; }
+.mes select, .mes input { min-width: 0; border: 1px solid var(--borda); border-radius: 7px; background: #fff; color: inherit; padding: 4px; }
+.semana { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 3px; text-align: center; }
+.semana[aria-hidden] { font-size: .75rem; color: var(--suave); margin-bottom: 5px; }
+.semana button { padding: 0; min-height: 40px; background: #f3f7f5; border: 0; border-radius: 7px; color: inherit; }
+.semana button:hover, .calendario:hover, .botao-icone:enabled:hover { background: #dceee7; }
+.semana button[aria-pressed="true"] { background: var(--verde); color: #fff; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+@media (max-width: 500px) {
+  .datas { grid-template-columns: 1fr; gap: 12px; }
+  .card { border-radius: 18px; }
+}
